@@ -67,13 +67,14 @@ class PointsController {
 
     const point = {
       image: request.file.filename,
+      name,
       email,
       whatsapp,
       latitude,
       longitude,
       city,
-      uf,
-    }
+      uf
+    };
   
     const insertIds = await trx('points').insert(point);
   
@@ -85,9 +86,9 @@ class PointsController {
       .map((item_id: number) => {
       return {
         item_id,
-        point_id,
-      }
-    })
+        point_id
+      };
+    });
   
     await trx('point_items').insert(pointItems);
 
